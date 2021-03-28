@@ -4,8 +4,11 @@
 2. Laravel 8
 3. Postman
 4. MySql (http://localhost:8081/)
+
   MySql server : - (kosongin)
+  
   MySql username: root
+  
   MySql password: secret
 
 ## Steps
