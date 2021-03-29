@@ -1,73 +1,83 @@
-# How to run code
-## required
-1. Docker
-2. Laravel 8
-3. Postman
-4. MySql (http://localhost:8081/)
+# PatientLab Endpoint
 
-  MySql server : - (kosongin)
-  
-  MySql username: root
-  
-  MySql password: secret
+## Description
 
-## Steps
-1. clone repository
-2. run _docker-compose build && docker-compose up -d_
-3. run _docker exec -it php /bin/sh_
-4. on /var/www/html # type _php artisan migrate_
-5. to test API Endpoint run POSTMAN
-6. POST method on localhost:8080/create 
-7. example request 
-case_1 = { 
-    "date_of_test":"20210227134300", 
-    "id_number":"IC000A2", 
-    "patient_name":"Patient A4", 
-    "gender":"F", 
-    "date_of_birth":"19940231", 
-    "lab_number":"QT196-21-124", 
-    "clinic_code":"QT196", 
-    "lab_studies":[
+An endpoint to parse PatientLab data.
+
+## Technology stack
+1. Laravel
+2. MySQL
+
+## Instruction 
+
+1. to run the program :
+
+    ```
+    docker-compose build
+    docker-compose up
+    ```
+
+## Endpoint
+
+1. create PatientLab data
+    * URL :
+      /create
+
+    * Method :
+      POST
+      
+    * URL Params :
+      None
+      
+    * Body Case 1 (json)
+    ```
+    { 
+        "date_of_test":[string], 
+        "id_number":[string], 
+        "patient_name":[string]4", 
+        "gender":[string], 
+        "date_of_birth":[string], 
+        "lab_number":[string]1-124", 
+        "clinic_code":[string], 
+        "lab_studies":[
+            {
+            "code":[string], 
+            "name":[string], 
+            "value":[string], 
+            "unit":[string], 
+            "ref_range":[string], 
+            "finding":[string], 
+            "result_state":[string]
+            } 
+        ]
+    }
+    ```
+
+    * Body Case 2 (json)
+    ```
+    { 
+        "patient_data":
         {
-        "code":"2085-9", 
-        "name":"HDL Cholesterol", 
-        "value":"cancel", 
-        "unit":"mg/dL", 
-        "ref_range":"> 59", 
-        "finding":"A", 
-        "result_state":"F"
-        } 
-    ]
- }
- 
-case_2 = { 
-    "patient_data":
-    {
-        "id_number":"IC000A3", 
-        "first_name":"Patient", 
-        "last_name":"A5", 
-        "phone_mobile":"+6500000000" 
-        "gender":"M", 
-        "date_of_birth":"19940231",
-    }, 
-    "date_of_test":"20210227134300", 
-    "lab_number":"QT196-21-124", 
-    "clinic_code":"QT196", 
-    "lab_studies":[
-    {
-        "code":"2085-9", 
-        "name":"HDL Cholesterol", 
-        "value":"cancel", 
-        "unit":"mg/dL", 
-        "ref_range":"> 59", 
-        "finding":"A", 
-        "result_state":"F"
-    } 
-  ]
- }
- 
-8. response 
-{
-    "message": "success add to database"
-}
-
+            "id_number":[string], 
+            "first_name":[string], 
+            "last_name":[string], 
+            "phone_mobile":"[string]" 
+            "gender":[string], 
+            "date_of_birth":[string],
+        }, 
+        "date_of_test":[string], 
+        "lab_number":[string], 
+        "clinic_code":[string], 
+        "lab_studies":[
+            {
+                "code":[string], 
+                "name":[string], 
+                "value":[string], 
+                "unit":[string], 
+                "ref_range":[string], 
+                "finding":[string], 
+                "result_state":[string]
+            } 
+        ]
+    }
+    ```
